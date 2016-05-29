@@ -1,7 +1,7 @@
 Package.describe({
   summary: "Reaction UI - Components for Reaction Commerce",
   name: "reactioncommerce:reaction-ui",
-  version: "0.1.0",
+  version: "0.2.0",
   documentation: "README.md"
 });
 
@@ -17,8 +17,6 @@ Package.onUse(function (api) {
   api.versionsFrom("METEOR@1.2");
 
   // meteor base packages
-  api.use("standard-minifiers");
-  api.use("mobile-experience");
   api.use("meteor-base");
   api.use("mongo");
   api.use("blaze-html-templates");
@@ -35,23 +33,18 @@ Package.onUse(function (api) {
   api.use("less");
 
   // Community Packages
-  api.use("cosmos:browserify@0.9.0");
+  api.use("cosmos:browserify@0.9.3");
 
   // meteor add-on packages
-  api.use("reactioncommerce:core@0.9.4");
+  api.use("reactioncommerce:reaction-schemas@1.0.1");
 
   api.addFiles("lib/client.browserify.js", "client");
 
   api.addFiles("client/styles/base.less", "client");
 
-  // api.addFiles("server/register.js", ["server"]); // register as a reaction package
-  // api.addFiles("server/stripe.js", ["server"]);
-
   api.addFiles("client/components/components.jsx", "client");
-  api.export("ReactionUI");
-  api.export("Sortable");
-
-  api.addFiles("client/components/button/button.jsx", "client");
+  api.addFiles("client/components/button/button.html", "client");
+  api.addFiles("client/components/button/button.js", "client");
   api.addFiles("client/components/button/button.less", "client");
 
   api.addFiles("client/components/items/item.jsx", "client");
@@ -59,22 +52,17 @@ Package.onUse(function (api) {
   api.addFiles("client/components/items/items.jsx", "client");
   api.addFiles("client/components/items/items.less", "client");
 
-
-  // api.addFiles("client/components/sortable/sortable.less", "client");
-
   api.addFiles("client/components/seperator/seperator.jsx", "client");
   api.addFiles("client/components/seperator/seperator.less", "client");
-
 
   api.addFiles("client/components/buttonGroup/buttonGroup.jsx", "client");
   api.addFiles("client/components/buttonGroup/buttonGroup.less", "client");
 
-  api.addFiles("client/components/numericInput/numericInput.html", "client");
-  api.addFiles("client/components/numericInput/numericInput.js", "client");
+  // api.addFiles("client/components/numericInput/numericInput.html", "client");
+  // api.addFiles("client/components/numericInput/numericInput.js", "client");
 
-  api.addFiles("client/components/textfield/textfield.jsx", "client");
+  api.addFiles("client/components/textfield/textfield.html", "client");
   api.addFiles("client/components/textfield/textfield.less", "client");
-  api.export("TextField");
 
   api.addFiles("client/components/metadata/metadata.jsx", "client");
   api.addFiles("client/components/metadata/metadata.less", "client");
@@ -83,8 +71,11 @@ Package.onUse(function (api) {
   api.addFiles("client/components/media/media.jsx", "client");
   api.addFiles("client/components/media/media.less", "client");
 
-  api.addFiles("client/components/tags/tag.jsx", "client");
-  api.addFiles("client/components/tags/tags.jsx", "client");
+  api.addFiles("client/components/tags/tagItem.html", "client");
+  api.addFiles("client/components/tags/tagItem.js", "client");
+  api.addFiles("client/components/tags/tagList.html", "client");
+  api.addFiles("client/components/tags/tagList.js", "client");
+
   api.addFiles("client/components/tags/tags.less", "client");
   api.export("TagList");
 
@@ -92,4 +83,7 @@ Package.onUse(function (api) {
   api.addFiles("client/styles/variables.less", "client");
   api.addFiles("client/styles/rtl.less", "client");
   api.addFiles("client/styles/mixins.less", "client");
+  // Exports
+  api.export("ReactionUI");
+  api.export("Sortable");
 });

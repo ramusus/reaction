@@ -369,7 +369,7 @@ Meteor.methods({
   "shop/updateHeaderTags": function (tagName, tagId, currentTagId) {
     check(tagName, String);
     check(tagId, Match.OneOf(String, null, void 0));
-    check(currentTagId, Match.Optional(String));
+    check(currentTagId, Match.OneOf(String, null, void 0));
 
     let newTagId;
     // must have 'core' permissions
@@ -479,6 +479,26 @@ Meteor.methods({
     }
     // unable to delete anything
     throw new Meteor.Error(403, "Unable to delete tags that are in use.");
+  },
+
+  /**
+   * shop/hideHeaderTag
+   * @param {String} tagId - method to remove tag navigation tags
+   * @param {String} currentTagId - currentTagId
+   * @return {String} returns remove result
+   */
+  "shop/hideHeaderTag": function (tagId) {
+    check(tagId, String);
+    // must have core permissions
+    if (!ReactionCore.hasPermission("core")) {
+      throw new Meteor.Error(403, "Access Denied");
+    }
+    this.unblock();
+    // hide it
+    console.log({ _id: tagId });
+    return ReactionCore.Collections.Tags.update({ _id: tagId }, {
+      $set: { isTopLevel: false }
+    });
   },
 
   /**
